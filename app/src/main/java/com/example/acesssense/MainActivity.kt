@@ -407,7 +407,7 @@ private fun parseAccessibilityResponse(rawText: String): AccessibilityEvaluation
 
 /**
  * Evalúa la accesibilidad urbana de una imagen capturada por CameraX utilizando
- * Google Gemini API (gemini-2.5-flash) con el System Prompt y estructura oficial
+ * Google Gemini API (gemini-3.5-flash-lite) con el System Prompt y estructura oficial
  * del Caso de Estudio 2 (Hackatón UVM 2026).
  */
 private suspend fun evaluarAccesibilidadUrbana(
@@ -432,7 +432,7 @@ private suspend fun evaluarAccesibilidadUrbana(
 
             // Paso 1 del Caso de Estudio: System Instructions de accesibilidad urbana y diseño universal
             val generativeModel = GenerativeModel(
-                modelName = "gemini-2.5-flash",
+                modelName = "gemini-3.5-flash-lite",
                 apiKey = BuildConfig.GEMINI_API_KEY,
                 generationConfig = config,
                 systemInstruction = content {
@@ -637,7 +637,7 @@ fun RutaAccesibleScreen() {
         if (isAnalyzing) return
         isAnalyzing = true
         try {
-            dynamicContent = "Analizando accesibilidad peatonal con Gemini 2.5 Flash..."
+            dynamicContent = "Analizando accesibilidad peatonal con Gemini 3.5 Flash Lite..."
             val frameBitmap = previewViewInstance?.bitmap?.scaleToMaxDimension(480)
             val evaluation = evaluarAccesibilidadUrbana(frameBitmap, voiceContext, userName)
             currentRisk = evaluation.riskLevel
